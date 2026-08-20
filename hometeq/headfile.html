@@ -1,0 +1,56 @@
+<!-- HTML document to define the layout of the header and the navigation bar -->
+<link href="https://fonts.googleapis.com/css2?family=Questrial&family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+<div id="container">
+    <a style="text-decoration:none" href="index.php">
+        <div id="navbar">
+            <div id="header">
+                <div id="logo">
+                    <h1><a href="index.php">VelvetVogue</a></h1>
+                    <h2>your home for fashion</h2>
+                </div>
+                <div id="navigation">
+                </div>
+            </div>
+    </a>
+
+    <h3>
+        <?php echo "London, " . date('l d F Y h:i:s'); ?>
+    </h3>
+
+    <div id="navigation">
+        <ul>
+            <div>
+                <li><a href="index.php">Shop Collection</a></li>
+                <li><a href="search.php">Search</a></li>
+                <li><a href="aboutus.php">About Us</a></li>
+
+                <?php
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+
+                if (isset($_SESSION['userid'])) {
+                    // If the user is logged in
+                    echo '<li><a href="my_orders.php">My Orders</a></li>';
+                    echo '<li><a href="edit_profile.php">Edit Profile</a></li>';
+                    echo '<li><a href="logout.php">Logout</a></li>';
+                    echo "<li style='float:right; font-weight:bold;'>Welcome, " . $_SESSION['fname'] . " " . $_SESSION['sname'] . "</li>";
+                } else {
+                    // If no user is logged in, show Sign Up & Login
+                    echo '<li><a href="signup.php">Sign Up</a></li>';
+                    echo '<li><a href="login.php">Login</a></li>';
+                }
+                ?>
+            </div>
+            <div style="float: right;">
+                <li><a href='basket.php'>Shopping Bag</a></li>
+                <li><a href='login.php'>Staff Login</a></li>
+            </div>
+        </ul>
+    </div>
+</div>
+
+<div id='content'>
